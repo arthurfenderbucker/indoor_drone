@@ -1,0 +1,7 @@
+
+<launch>
+    <node name="slam_odom_aligner" pkg="odom_slam_sensor_fusion" type="odom_slam_sf.py" output="screen">
+        <remap from="/orb_slam2_mono/pose"                  to="/orb_slam3/camera_pose"/>
+    </node>
+
+</launch>

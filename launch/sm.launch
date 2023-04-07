@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="calibrate" default="true" />
+    <node name="State_machine" pkg="indoor_drone" type="sm.py" required="true" output="screen"/>
+
+    <node pkg="cv_detection" name="rectangle_detector" type="rectangle_detector.py" output="screen">
+        <param name="image_topic" type="string" value="/bebop/image_raw" />
+        <param name="pub_topic" type="string" value="/control/align_reference/ref_point" />
+        <param name="running" type="bool" value="false"/>
+    </node>
+    <!-- <node pkg="cv_detection" name="color_range_detector" type="color_range.py" output="screen">
+        <param name="image_topic" type="string" value="/bebop/image_raw" />
+        <param name="color" type="string" value="green" />
+        <param name="pub_topic" type="string" value="/control/align_reference/ref_point" />
+        <param name="running" type="bool" value="false" />
+        <param name="min_radius" type="int" value="20" />
+    </node>-->
+    <node pkg="cv_detection" name="feature_detector" type="feature_detector.py" output="screen">
+        <param name="image_topic" type="string" value="/bebop/image_raw" />
+        <param name="pub_topic" type="string" value="/control/align_reference/ref_point" />
+        <param name="running" type="bool" value="false" />
+    </node>
+    <!-- <node pkg="cv_detection" name="inventory" type="inventory.py" output="screen">
+        <param name="image_topic" type="string" value="/bebop/image_raw" />
+        <param name="pub_topic" type="string" value="/control/align_reference/ref_point" />
+        <param name="running" type="bool" value="false" />
+    </node>  -->
+
+
+    <!-- <node name="manual_control" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" required="true" launch-prefix="gnome-terminal -e ">
+        <param name="cmd_vel" type="string" value="/bebop/cmd_vel" /> 
+    </node> -->
+
+    <node name="Kill_button" pkg="drone_control" type="kill_button.py" required="true" output="screen"/>
+    
+    <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py" output="screen"/>
+    
+    <node name="control" pkg="drone_control" type="control.py" output="screen">
+       <param name="calibrate_pid" type="bool" value="$(arg calibrate)" />
+    </node> 
+    
+
+
+    <group if="$(eval arg('calibrate') == true)">
+        <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" >
+        </node>
+
+        <node name="dynamic_reconfigure_load" pkg="dynamic_reconfigure" type="dynparam" args="load /control $(find drone_control)/config/calibration.yaml" />
+    </group>
+    <!-- <node name="align_reference" pkg="drone_control" type="align_reference.py" launch-prefix="gnome-terminal -e "/> -->
+
+</launch>
+<!--  -->
+

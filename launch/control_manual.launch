@@ -1,0 +1,8 @@
+
+<launch>
+   
+    <node name="manual_control" pkg="drone_control" type="teleop_twist_keyboard.py" required="true" output="screen"/>
+
+
+</launch>
+<!--  -->

@@ -1,0 +1,20 @@
+<launch> 
+  <!-- <arg name="map" default="true"/>
+  <arg name="map_file" default="quarto2.bin"/>
+  <arg name="config_file" default="default.json"/>
+  <node name="control" pkg="drone_control"
+      type="control.py" output="screen"> -->
+       
+       <!-- <param name="dynamic_configuration" type="bool" value="false" /> -->
+       <!-- <param name="X" value="/P_x,std_msgs/Float64,publishedTopic" /> -->
+       <!-- <param name="settings_file" type="string" value="$(drone_control)/config/bebop2_config.yaml" /> -->
+  <!-- </node> -->
+  <node name="calibrate_slam" pkg="odom_slam_sensor_fusion" type="calibrate_orb_slam.py" output="screen">
+        <remap from="/orb_slam2_mono/pose"                  to="/orb_slam3/camera_pose"/>
+  </node>  
+
+  <!-- <include file="$(find orb_slam2_ros)/ros/launch/orb_slam2_bebop2.launch">
+    <arg name="map_file" value="$(arg map_file)"/>
+    <arg name="load_map" value="$(arg map)"/>
+  </include> -->
+</launch>

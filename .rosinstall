@@ -1,0 +1,37 @@
+- git:
+    local-name: orb_slam3_ros
+    uri: https://github.com/ros-gbp/xacro-release.git
+
+- git:
+    local-name: rqt_interface
+    uri: https://github.com/arthurfenderbucker/rqt_interface.git
+
+
+- git:
+    local-name: cv_detection
+    uri: https://github.com/arthurfenderbucker/cv_detection.git
+
+- git:
+    local-name: drone_control
+    uri: https://github.com/arthurfenderbucker/drone_control.git
+
+- git:
+    local-name: ros_numpy
+    uri: https://github.com/arthurfenderbucker/ros_numpy.git
+
+- git:
+    local-name: orb_slam3_ros
+    uri: https://github.com/arthurfenderbucker/orb_slam3_ros.git
+
+- git:
+    local-name: bebop_autonomy
+    uri: https://github.com/arthurfenderbucker/bebop_autonomy.git
+
+- git:
+    local-name: parrot_arsdk
+    uri: https://github.com/antonellabarisic/parrot_arsdk.git
+    branch: noetic_dev
+
+- git:
+    local-name: odom_slam_sensor_fusion
+    uri: https://github.com/arthurfenderbucker/odom_slam_sensor_fusion.git

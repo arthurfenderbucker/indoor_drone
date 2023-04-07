@@ -1,0 +1,26 @@
+<launch> 
+  <arg name="map" default="true"/>
+  <arg name="map_file" default="room.bin"/>
+
+  <!-- <arg name="config_file" default="default.json"/> -->
+  <!-- <node name="control" pkg="drone_control"
+      type="control.py" output="screen"> -->
+       
+       <!-- <param name="dynamic_configuration" type="bool" value="false" /> -->
+       <!-- <param name="X" value="/P_x,std_msgs/Float64,publishedTopic" /> -->
+       <!-- <param name="settings_file" type="string" value="$(drone_control)/config/bebop2_config.yaml" /> -->
+  <!-- </node> -->
+  <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen">
+  </node>
+  <include file="$(find odom_slam_sensor_fusion)/launch/orb_slam2_bebop2.launch">
+    <arg name="map_file" value="$(arg map_file)"/>
+    <arg name="load_map" value="$(arg map)"/>
+  </include>
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find indoor_drone)/config/rviz/demo.rviz" />
+
+  <include file="$(find bebop_driver)/launch/bebop_node.launch">
+    <arg name="ip" default="192.168.42.1" />
+    <arg name="drone_type" default="bebop2" /> 
+  </include>
+
+</launch>
