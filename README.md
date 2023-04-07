@@ -1,6 +1,6 @@
-# Microsoft Airsim project demo
+# Indoor Drone
 
-Demo to control a bebop 2 drone in an indoor environment.
+Demo to control a bebop 2 drone in indoor environments.
 
 Tested on Ubuntu 20.04 with ROS Noetic
 
