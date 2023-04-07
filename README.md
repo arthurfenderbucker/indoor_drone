@@ -1,6 +1,9 @@
 # Indoor Drone
 
-Demo to control a bebop 2 drone in indoor environments.
+Demo to control a bebop 2 drone in indoor environments unsing monocular ORB SLAM 3.
+
+<!-- [![simple inspection test](docs/images/video_img.png)](docs/videos/demo_test.mp4) -->
+
 
 Tested on Ubuntu 20.04 with ROS Noetic
 
@@ -18,8 +21,10 @@ cd ~
 mkdir catkin_ws/src -p
 cd catkin_ws/src
 
-#clone repo
+git clone https://github.com/arthurfenderbucker/indoor_drone.git
+
 cd catkin_ws
+wstool init src src/indoor_drone/.rosinstall
 
 rosdep init
 rosdep update
@@ -54,13 +59,12 @@ Connect with the drone
 
 - terminal 1: ```roscore```
 - terminal 2: ```mon launch indoor_drone interface.launch map_name:=demo99```
-
-launches the GUI for the inteface. The parameter "map_name" will define the desired SLAM map name to be saved.
+</br>(launches the GUI for the inteface. The parameter "map_name" will define the desired SLAM map name to be saved)
 
 Make sure that the drone image is being shown in the bottom left of the interface ("raw image")
 
-Now launch the SLAM node without any map_name argument. It will generate a new map from scratch.
 - terminal 3: ```roslaunch odom_slam_sensor_fusion orb_slam3_bebop2.launch ```
+</br>(Now launch the SLAM node without any map_name argument. It will generate a new map from scratch)
 
 
 - Move the drone slowly around the environent.
@@ -68,17 +72,16 @@ Now launch the SLAM node without any map_name argument. It will generate a new m
 You will notice that the "tracking image" will now show a bunch of green dots (features). This features are tracked and compared between multiple images and are used to infer camera's position.
 
 >**Tips for good scans**\
-Begin and end the scaning process from the same point in the space, ideally the origin or place where the drone will takeoff.\
-Make sure that the camera is not too close to objects.\
-Try to always keep features in frame.\
-If the scan looks weird after calibration (blobs of features in the wrong places or missing features), restart the scanning process.
+-> Make multiple passes over the environment. Start by moving the camera around the scene, just showing all the objects and their general position in the space. Repeat the pass now trying to capture details of the objects.\
+-> Begin and end the scaning process from the same point in the space, ideally the origin or place where the drone will takeoff.\
+-> Make sure that the camera is not too close to objects.\
+-> Try to always keep features in frame.
 
 
 <img src="docs/images/calibration.png" width=200 height=200 style="float: right"/>
 
-
-
 ## Calibrate the coordinate frame
+
 This is step is necessary to compute the transformation between the slam map to the desired real world frame.
 
 1) place the drone in the desired origin of the map facing the desired x axis, and press **"callibrate origin"**
