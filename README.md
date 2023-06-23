@@ -1,6 +1,8 @@
 # Indoor Drone
 
-Demo to control a bebop 2 drone in indoor environments unsing monocular ORB SLAM 3.
+[![Demo Video](https://img.youtube.com/vi/2eU0rLp464s/0.jpg)](https://www.youtube.com/watch?v=2eU0rLp464s)
+
+Demo to control a bebop 2 drone in indoor environments using monocular ORB SLAM 3.
 
 <!-- [![simple inspection test](docs/images/video_img.png)](docs/videos/demo_test.mp4) -->
 
