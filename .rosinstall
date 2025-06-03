@@ -30,7 +30,7 @@
 - git:
     local-name: parrot_arsdk
     uri: https://github.com/antonellabarisic/parrot_arsdk.git
-    branch: noetic_dev
+    version: noetic_dev
 
 - git:
     local-name: odom_slam_sensor_fusion
